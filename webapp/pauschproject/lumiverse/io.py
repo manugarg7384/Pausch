@@ -1,7 +1,7 @@
 import requests
 import json
 
-URL = 'http://pbridge.adm.cs.cmu.edu:11111/echo'
+URL = 'http://pbridge.adm.cs.cmu.edu:11111/update'
 
 # Color constants
 RED   = [255, 0, 0]
@@ -11,8 +11,8 @@ BLUE  = [0, 0, 255]
 class BridgePanel(object):
     '''A class representing a panel on the Pausch bridge.'''
     def __init__(self, index, color):
-        self.index = index 
-        self.color = color
+        self.selector = "$panel={}".format(index) 
+        self.rgb = color
 
 class BridgeUpdate(object):
     '''The transcational unit for communicating with the bridge.'''
@@ -23,4 +23,13 @@ class BridgeUpdate(object):
         self.panels.append(panel)
 
 def sendUpdate(update):
-    r = requests.post(URL, json = update)
+    r = requests.post(URL, data = json.dumps(update))
+                       
+       '''{
+           "data": [
+               {
+                   "selector": "$panel=31",
+                   "rgb": [1, 0, 0]
+               }
+            ]
+        }'''

@@ -12,5 +12,5 @@ def home(request):
     update.addPanel(panel)
 
     sendUpdate(update)
-    
+
     return render(request, 'Home.html', context)
