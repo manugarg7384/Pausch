@@ -23,13 +23,4 @@ class BridgeUpdate(object):
         self.panels.append(panel)
 
 def sendUpdate(update):
-    r = requests.post(URL, data = json.dumps(update))
-                       
-       '''{
-           "data": [
-               {
-                   "selector": "$panel=31",
-                   "rgb": [1, 0, 0]
-               }
-            ]
-        }'''
+    r = requests.post(URL, data = json.dumps(update, default = lambda obj: obj.__dict__))
