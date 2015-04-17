@@ -8,7 +8,7 @@ def home(request):
     context.update(csrf(request))
 
     update = BridgeUpdate()
-    panel = BridgePanel(0, BLUE)
+    panel = BridgePanel(33, GREEN)
     update.addPanel(panel)
 
     sendUpdate(update)
