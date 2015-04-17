@@ -3,19 +3,17 @@ from django.core.context_processors import csrf
 from django.http import HttpResponse
 from lumiverse.io import *
 
-from random import random
+from random import random, randint
 
 def home(request):
-    context = {}
-    context.update(csrf(request))
+    while True:
+        update = BridgeUpdate()
+        panel = BridgePanel(randint(9, 49), [random(), random(), random()])
+        update.addPanel(panel)
 
-    update = BridgeUpdate()
-    panel = BridgePanel(33, GREEN)
-    update.addPanel(panel)
+        sendUpdate(update)
 
-    sendUpdate(update)
-
-    return render(request, 'Home.html', context)
+    return render(request, 'Home.html')
 
 def panel_input(request):
     update = BridgeUpdate()
@@ -25,3 +23,7 @@ def panel_input(request):
     sendUpdate(update)
 
     return HttpResponse()
+
+def get_bridge_state(request):
+    r = requests.post(URL)
+    return JsonResponse(r.content)
