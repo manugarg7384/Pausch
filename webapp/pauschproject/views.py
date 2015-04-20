@@ -6,12 +6,12 @@ from lumiverse.io import *
 from random import random, randint
 
 def home(request):
-    while True:
+    while False:
         update = BridgeUpdate()
         panel = BridgePanel(randint(9, 49), [random(), random(), random()])
         update.addPanel(panel)
 
-        sendUpdate(update)
+        #sendUpdate(update)
 
     return render(request, 'Home.html')
 
