@@ -4,53 +4,133 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
     <title>Pausch Project</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script> 
-  </head>
 
+    <style>
+    body {
+      background: #000;
+      font-family: 'helvetica', helvetica, sans-serif;
+    }
+
+    h1 {
+      display: inline;
+      font-size: 32px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      display: inline;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    a, a:link, a:hover, a:visited {
+      color: #000;
+    }
+
+    .title {
+      display: inline;
+    }
+
+    .title a, .title a:hover, .title a:link, .title a:visited{
+      color: #fff;
+      text-decoration: none;
+      padding-left: 10px;
+    }
+
+    .row {
+      padding-top: 80px;
+    }
+
+    .col-md-1 {
+      width: 4.34%; 
+      height:  50px;
+    }
+
+    .fa {
+      font-size: 20px;
+      line-height: 10px;
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);  
+    }
+
+    .cd-popup-trigger {
+      color: #fff;
+    }
+
+    @media only screen and (min-width: 1170px) {
+      .cd-popup-trigger {
+        margin: 6em auto;
+        }
+      }
+
+    .cd-popup {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(94, 110, 141, 0.9);
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+      -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+      transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    }
+
+    .cd-popup.is-visible {
+      opacity: 1;
+      visibility: visible;
+      -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+      -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+      transition: opacity 0.3s 0s, visibility 0s 0s;
+    }
+
+    .cd-popup-container {
+      position: relative;
+      width: 90%;
+      max-width: 450px;
+      margin: 4em auto;
+      background: #fff;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .cd-popup-container .cd-popup-close {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+    }
+
+    @media only screen and (min-width: 1170px) {
+      .cd-popup-container {
+        margin: 8em auto;
+        }
+      }
+      </style>
+    </head>
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="#" style="color:white"><h1>Lights On!</h1></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-        </div>
-      </div>
-    </nav>
+    <div class="title">
+      <a href="#"><h1>Lights On!</h1></a> 
+      <a href="#0" class="cd-popup-trigger"><i class="fa fa-info-circle"></i></a> 
+    </div>
 
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <br><br>
-            <h2>Goal:</h2> Turn all the lights on<br>
-            <br><br>
-            <h2>Instructions:</h2>
-            1. If you click on a cell then that cell and its immediate neighbors toggle.<br><br>
-
-            2. Continue until you turn on all the lights.<br><br>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <br>
 			<div class="row">
 			  <div class="col-md-1" style="color:blue;border-style:solid;">1</div>
 			  <div class="col-md-1" style="color:grey;border-style:solid;">2</div>
@@ -64,19 +144,64 @@
 			  <div class="col-md-1" style="color:grey;border-style:solid;">10</div>
 			  <div class="col-md-1" style="color:blue;border-style:solid;">11</div>
 			  <div class="col-md-1" style="color:grey;border-style:solid;">12</div>
-			</div><br><br>
-        </div>
-      </div>
-    </div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">13</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">14</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">15</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">16</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">17</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">18</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">19</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">20</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">21</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">22</div>
+        <div class="col-md-1" style="color:grey;border-style:solid;">23</div>
+			</div>
+     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <div class="cd-popup is-visible" role="alert">
+      <div class="cd-popup-container">
+        <h2>Goal</h2> 
+        <br>
+        Turn all the lights on
+        <p></p>
+        <h2>Instructions</h2>
+        <br>
+        1. Clicking on a block toggles the block and it's neighbors on or off
+        <br>
+        2. Continue toggling blocks until all the lights have been turned on
+
+        <a href="#0" class="cd-popup-close img-replace"><!--<i class="fa fa-times"></i>--></a>
+      </div>
+    </div> 
+   
+
+
+    <script>
+    jQuery(document).ready(function($){
+  //open popup
+  $('.cd-popup-trigger').on('click', function(event){
+    event.preventDefault();
+    $('.cd-popup').addClass('is-visible');
+  });
+  
+  //close popup
+  $('.cd-popup').on('click', function(event){
+    if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+      event.preventDefault();
+      $(this).removeClass('is-visible');
+    }
+  });
+  //close popup when clicking the esc keyboard button
+  $(document).keyup(function(event){
+      if(event.which=='27'){
+        $('.cd-popup').removeClass('is-visible');
+      }
+    });
+});
+    </script>
+   
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="http://getbootstrap.com/assets/js/vendor/holder.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
