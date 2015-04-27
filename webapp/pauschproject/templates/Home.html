@@ -20,44 +20,33 @@
       background: #000;
       font-family: 'helvetica', helvetica, sans-serif;
     }
-
     h1 {
       display: inline;
       font-size: 32px;
       font-weight: bold;
       text-transform: uppercase;
     }
-
     h2 {
       display: inline;
       font-size: 16px;
       font-weight: bold;
       text-transform: uppercase;
     }
-
     a, a:link, a:hover, a:visited {
       color: #000;
     }
-
     .title {
       display: inline;
     }
-
     .title a, .title a:hover, .title a:link, .title a:visited{
       color: #fff;
       text-decoration: none;
       padding-left: 10px;
     }
-
     .row {
       padding-top: 80px;
     }
-
-    .col-md-1 {
-      width: 4.5%; 
-      height:  50px;
-    }
-
+    
     .fa {
       font-size: 20px;
       line-height: 10px;
@@ -67,17 +56,14 @@
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);  
     }
-
     .cd-popup-trigger {
       color: #fff;
     }
-
     @media only screen and (min-width: 1170px) {
       .cd-popup-trigger {
         margin: 6em auto;
         }
       }
-
     .cd-popup {
       position: fixed;
       left: 0;
@@ -91,7 +77,6 @@
       -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
       transition: opacity 0.3s 0s, visibility 0s 0.3s;
     }
-
     .cd-popup.is-visible {
       opacity: 1;
       visibility: visible;
@@ -99,7 +84,6 @@
       -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
       transition: opacity 0.3s 0s, visibility 0s 0s;
     }
-
     .cd-popup-container {
       position: relative;
       width: 90%;
@@ -109,18 +93,33 @@
       border-radius: 5px;
       padding: 10px;
     }
-
     .cd-popup-container .cd-popup-close {
       position: absolute;
       top: 10px;
       right: 5px;
     }
-
     @media only screen and (min-width: 1170px) {
       .cd-popup-container {
         margin: 8em auto;
         }
       }
+
+      button {
+        width: 100%;
+        height: 50px;
+        border: 0;
+        outline: 0;
+        margin-left: 1px;
+        color: #000;
+        background-color: #fff;
+      }
+
+      .wrap {
+       display: flex;
+       flex-direction: row;
+       flex-wrap: nowrap;
+       padding-top: 80px;
+}
       </style>
     </head>
   <body>
@@ -130,31 +129,29 @@
       <a href="#0" class="cd-popup-trigger"><i class="fa fa-info-circle"></i></a> 
     </div>
 
-    <div class="container-fluid">
-			<div class="row">
-			  <div class="col-md-1" style="color:blue;border-style:solid;">1</div>
-			  <div class="col-md-1" style="color:grey;border-style:solid;">2</div>
-			  <div class="col-md-1" style="color:grey;border-style:solid;">3</div>
-			  <div class="col-md-1" style="color:blue;border-style:solid;">4</div>
-			  <div class="col-md-1" style="color:grey;border-style:solid;">5</div>
-			  <div class="col-md-1" style="color:grey;border-style:solid;">6</div>
-			  <div class="col-md-1" style="color:grey;border-style:solid;">7</div>
-			  <div class="col-md-1" style="color:blue;border-style:solid;">8</div>
-			  <div class="col-md-1" style="color:blue;border-style:solid;">9</div>
-			  <div class="col-md-1" style="color:grey;border-style:solid;">10</div>
-			  <div class="col-md-1" style="color:blue;border-style:solid;">11</div>
-			  <div class="col-md-1" style="color:grey;border-style:solid;">12</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">13</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">14</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">15</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">16</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">17</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">18</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">19</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">20</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">21</div>
-        <div class="col-md-1" style="color:grey;border-style:solid;">22</div>
-			</div>
+    <div class="wrap">
+      <button type="button" style="background-color: #0000FF;">1</button>
+      <button type="button">2</button>
+      <button type="button">3</button>
+      <button type="button">4</button>
+      <button type="button">5</button>
+      <button type="button">6</button>
+      <button type="button">7</button>
+      <button type="button">8</button>
+      <button type="button">9</button>
+      <button type="button">10</button>
+      <button type="button">11</button>
+      <button type="button">12</button>
+      <button type="button">13</button>
+      <button type="button">14</button>
+      <button type="button">15</button>
+      <button type="button">16</button>
+      <button type="button">17</button>
+      <button type="button">18</button>
+      <button type="button">19</button>
+      <button type="button">20</button>
+      <button type="button">21</button>
+      <button type="button">22</button>
      </div>
 
     <div class="cd-popup" role="alert">
