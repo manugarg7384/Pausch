@@ -1,4 +1,4 @@
-#/usr/bin/python
+#!/usr/bin/env python
 """
 Bridge-side server that drives Lumiverse.
 
@@ -32,7 +32,7 @@ def server_update():
     params = json.load(request.body)
     for action in params['data']:
         [r, g, b] = action['rgb']
-        rig.select(action['selector']).setColorRGBRaw("color", r, g, b)
+	rig.select(str(action['selector'])).setColorRGBRaw('color', r, g, b)
     return "success"
 
 @route('/test/<selector>/<r>/<g>/<b>')
