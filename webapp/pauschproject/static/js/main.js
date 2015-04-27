@@ -1,15 +1,23 @@
 $(function() {
   init();
+
   $('.wrap button').click(function()  {
     console.log(this.innerHTML);
     var data = {
-      index: this.innerHTML
+      index: 22 - this.innerHTML
     }
     $.ajax({
         url: '/change-panel',
         method: 'GET',
-        data: data
+        data: data,
+        dataType: 'html',
+        success: success
     });
+
+    function success(data) {
+      console.log(data);
+      document.write(data);
+    }
   });
 });
 
