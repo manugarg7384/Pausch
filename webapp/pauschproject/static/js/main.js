@@ -1,8 +1,27 @@
 $(function() {
   init();
+  bindButtons();
 
-  $('.wrap button').click(function()  {
-    console.log(this.innerHTML);
+  var REFRESH_INTERVAL = 300;
+  window.setInterval(updateButtons, REFRESH_INTERVAL);
+});
+
+function updateButtons() {
+  $.ajax({
+    url: '/update',
+    method: 'GET',
+    dataType: 'html',
+    success: success
+  });
+
+  function success(data) {
+    $('.wrap').html(data);
+    bindButtons();
+  }
+}
+
+function bindButtons() {
+  $('.wrap button').click(function() {
     var data = {
       index: 22 - this.innerHTML
     }
@@ -15,11 +34,11 @@ $(function() {
     });
 
     function success(data) {
-      console.log(data);
-      document.write(data);
+      $('.wrap').html(data);
+      bindButtons();
     }
   });
-});
+}
 
 function init() {
   //open popup

@@ -14,26 +14,28 @@ toggle_URL = 'http://pbridge.adm.cs.cmu.edu:11111/toggle/'
 state_URL = 'http://pbridge.adm.cs.cmu.edu:11111/state'
 
 def home(request):
-    return update_bridge_state(request)
+    context = update_bridge_state(request)
+    return render(request, 'Home.html', context)
+
+def update(request):
+    context = update_bridge_state(request)
+    return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
 
 def panel_input(request):
     try:
         requests.get(toggle_URL + str(request.GET['index']))
-        return update_bridge_state(request)
+        return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
     except:
-        return render(request, 'Home.html')
+        return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
     
 def update_bridge_state(request):
     try:
         r = requests.get(state_URL)
         data = json.loads(r.text)
-        print(data['win'])
         context = {}
         i = 22
-        print("I'M OUTSIDE THE LOOP")
 
         for panel in data['panels']:
-            print("I GET IN THE LOOP")
             red = 255
             green = 255
             blue = 255
@@ -42,7 +44,6 @@ def update_bridge_state(request):
                 [red, green, blue] = panel['color']
             context['button'+str(i)] = (red, green, blue)
             i = i - 1
-            print(context['button' + str(i + 1)])
-        return render(request, 'Home.html', context)
+        return context
     except:
-        return render(request, 'Home.html')
+        return {}
