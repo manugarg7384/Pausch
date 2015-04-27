@@ -25,14 +25,15 @@ def update_bridge_state(request):
     try:
         r = requests.get(state_URL)
         context = {}
-        i = 0
-        for [r, g, b] in r.content:
-            print(r)
-            print(g)
-            print(b)
-            context['button'+str(i)] = (r, g, b)
-            i++
-        # Hardcode the states of every button into context
+        i = 21
+        red = 0
+        green = 0
+        blue = 0
+        for panel in r.content['panels']:
+            if(panel['active']):
+                [red, green, blue] = panel['color']
+            context['button'+str(i)] = (red, green, blue)
+            i = i - 1
         return render(request, 'Home.html', context)
     except:
         return render(request, 'Home.html')
