@@ -9,10 +9,10 @@ import time
 import requests
 
 toggle_URL = 'http://pbridge.adm.cs.cmu.edu:11111/toggle/'
-state_URL = 'http://pbridge.adm.cs.cmu.edu:11111/state/'
+state_URL = 'http://pbridge.adm.cs.cmu.edu:11111/state'
 
 def home(request):
-    return render(request, 'Home.html')
+    return update_bridge_state(request)
 
 def panel_input(request):
     try:
@@ -25,11 +25,14 @@ def update_bridge_state(request):
     try:
         r = requests.get(state_URL)
         context = {}
-        i = 21
+        i = 22
         red = 0
         green = 0
         blue = 0
+        print("I'M OUTSIDE THE LOOP")
+        print(r.content['win'])
         for panel in r.content['panels']:
+            print("I GET IN THE LOOP")
             if(panel['active']):
                 [red, green, blue] = panel['color']
             context['button'+str(i)] = (red, green, blue)
