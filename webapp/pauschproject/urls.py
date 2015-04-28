@@ -6,4 +6,6 @@ from pauschproject import views
 urlpatterns = patterns('',
     url(r'^$', views.home),
     url(r'^change-panel$', views.panel_input),
+    url(r'^state$', views.update_bridge_state),
+    url(r'^update$', views.update)
 )
