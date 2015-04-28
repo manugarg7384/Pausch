@@ -14,6 +14,8 @@ import datetime
 import json
 import random
 import sys
+import threading
+import time
 
 DEFAULT_RIG_PATH = '/home/teacher/Lumiverse/PBridge.rig.json'
 
@@ -49,9 +51,13 @@ def random_color():
     r, g, b = hsl_to_rgb(random.uniform(0, 360), 1.0, 0.5)
     return (int(r * 255), int(g * 255), int(b * 255))
 
-def win_show():
-    """TODO"""
-    pass
+def win_show(bridge_state):
+    for i in range(1200):
+        r, g, b = hsl_to_rgb((i * 10) % 360, 1.0, 0.5)
+        rig.select('$panel={}'.format(i % 57 + 1)).setColorRGBRaw('color', r, g, b)
+        time.sleep(0.1)
+    # start next game
+    init_game()
 
 def bridge_render(bridge_state):
     win = True
@@ -67,7 +73,8 @@ def bridge_render(bridge_state):
 
     if win:
         bridge_state['win'] = True
-        win_show()
+        t = threading.Thread(target=win_show, args=(bridge_state,))
+        t.start()
     else:
         bridge_state['win'] = False
 
@@ -143,7 +150,7 @@ def server_echo():
 def run_bridge_server(port=11111):
     # keep the server single threaded so that no locking is necessary
     # around bridge_state
-    run_bottle(host='0.0.0.0', port=port)
+    run_bottle(host='0.0.0.0', port=port, server='paste')
 
 if __name__ == '__main__':
     # global
