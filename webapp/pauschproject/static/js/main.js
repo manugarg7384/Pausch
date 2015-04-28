@@ -1,6 +1,6 @@
 $(function() {
   init();
-  bindButtons();
+  bindButtons($('.wrap button'));
 
   var REFRESH_INTERVAL = 300;
   window.setInterval(updateButtons, REFRESH_INTERVAL);
@@ -13,15 +13,11 @@ function updateButtons() {
     dataType: 'html',
     success: success
   });
-
-  function success(data) {
-    $('.wrap').html(data);
-    bindButtons();
-  }
 }
 
-function bindButtons() {
-  $('.wrap button').click(function() {
+function bindButtons(buttons) {
+  buttons.click(function() {
+    console.log('clicked');
     var data = {
       index: 22 - this.innerHTML
     }
@@ -32,12 +28,19 @@ function bindButtons() {
         dataType: 'html',
         success: success
     });
-
-    function success(data) {
-      $('.wrap').html(data);
-      bindButtons();
-    }
   });
+}
+
+/**
+ * Success function for AJAX calls. Updates the buttons on the home page with
+ * the new buttons states.
+ */
+function success(data) {
+  var old = $('.wrap button');
+  old.unbind('click');
+  var newest = $.parseHTML($.trim(data));
+  bindButtons($(newest));
+  $('.wrap').html(newest);
 }
 
 function init() {
