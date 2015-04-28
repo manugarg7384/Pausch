@@ -19,6 +19,20 @@ import time
 
 DEFAULT_RIG_PATH = '/home/teacher/Lumiverse/PBridge.rig.json'
 
+class DummyDeviceSet(object):
+    def setColorRGBRaw(*args, **kwargs):
+        pass
+
+class DummyRig(object):
+    def select(*args, **kwargs):
+        return DummyDeviceSet()
+    def getAllDevices(*args, **kwargs):
+        return DummyDeviceSet()
+    def init(*args, **kwargs):
+        pass
+    def run(*args, **kwargs):
+        pass
+
 rig = None
 bridge_state = {}
 panels = {k: [10 + 2*k, 11 + 2*k] for k in range(0, 19)}
@@ -98,9 +112,12 @@ def init_game(randomized=True):
     bridge_render(bridge_state)
 
 
-def init_lumiverse(rig_path=DEFAULT_RIG_PATH):
+def init_lumiverse(rig_path=DEFAULT_RIG_PATH, dummy=False):
     global rig
-    rig = L.Rig(rig_path)
+    if dummy:
+        rig = DummyRig()
+    else:
+        rig = L.Rig(rig_path)
     rig.init()
     rig.run()
     init_game()
