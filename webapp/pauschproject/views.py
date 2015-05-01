@@ -18,16 +18,32 @@ def home(request):
     return render(request, 'Home.html', context)
 
 def update(request):
-    context = update_bridge_state(request)
-    return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
+    return HttpResponse(json.dumps(get_bridge_state()), content_type='application/json')
+
+    #context = update_bridge_state(request)
+    #return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
 
 def panel_input(request):
     try:
-        requests.get(toggle_URL + str(request.GET['index']))
-        return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
-    except:
-        return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
-    
+        r = requests.get(toggle_URL + str(request.GET['index']))
+        return HttpResponse(r.text, content_type='application/json')
+    except Exception as e:
+        return HttpResponse(json.dumps({}), content_type='application/json')
+
+    #try:
+    #    requests.get(toggle_URL + str(request.GET['index']))
+    #    return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
+    #except:
+    #    return HttpResponse(render_to_string('buttons.html', update_bridge_state(request)))
+
+def get_bridge_state():
+    try:
+        r = requests.get(state_URL)
+        data = json.loads(r.text)
+        return data
+    except Exception as e:
+        return {}
+
 def update_bridge_state(request):
     try:
         r = requests.get(state_URL)
@@ -36,9 +52,9 @@ def update_bridge_state(request):
         i = 22
 
         for panel in data['panels']:
-            red = 255
-            green = 255
-            blue = 255
+            red = 0
+            green = 0
+            blue = 0
 
             if(panel['active']):
                 [red, green, blue] = panel['color']

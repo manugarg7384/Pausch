@@ -17,9 +17,8 @@ function updateButtons() {
 
 function bindButtons(buttons) {
   buttons.click(function() {
-    console.log('clicked');
     var data = {
-      index: 22 - this.innerHTML
+      index: 22 - this.value
     }
     $.ajax({
         url: '/change-panel',
@@ -36,12 +35,27 @@ function bindButtons(buttons) {
  * the new buttons states.
  */
 function success(data) {
+  data = $.parseJSON(data);
+  $('.wrap button').each(function(i, elem) {
+    var panel = data.panels[22 - (~~elem.value)];
+
+    if (panel.active) {
+      $(elem).css('background-color', 'rgb(' + panel.color[0] + ', ' + panel.color[1] + ', ' + panel.color[2] + ')');
+    } else {
+      $(elem).css('background-color', 'black');
+    }
+  });
+}
+ /*
+function success(data) {
+
   var old = $('.wrap button');
   old.unbind('click');
   var newest = $.parseHTML($.trim(data));
   bindButtons($(newest));
   $('.wrap').html(newest);
 }
+*/
 
 function init() {
   //open rules popup
