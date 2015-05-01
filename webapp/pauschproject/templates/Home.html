@@ -159,7 +159,27 @@
       
     }
 
+    button:hover {
+      -webkit-animation-name: glow;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: 1;
+      -webkit-box-shadow: 0 0 20px #ff0000;
+      
+    }
     
+    }@-webkit-keyframes glow {
+      from { 
+        -webkit-box-shadow: 0 0 0 #ff0000;
+        -moz-box-shadow: 0 0 0 #ff0000; 
+        box-shadow: 0 0 0 #ff0000; 
+      }
+      to { 
+        -webkit-box-shadow: 0 0 20px #ff0000; 
+        -moz-box-shadow: 0 0 20px #ff0000;
+        box-shadow: 0 0 20px #ff0000; 
+      }
+    }
+
 
 
       </style>
