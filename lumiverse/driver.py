@@ -66,7 +66,7 @@ def random_color():
     return (int(r * 255), int(g * 255), int(b * 255))
 
 def win_show(bridge_state):
-    for i in range(1200):
+    for i in range(300):
         r, g, b = hsl_to_rgb((i * 10) % 360, 1.0, 0.5)
         rig.select('$panel={}'.format(i % 57 + 1)).setColorRGBRaw('color', r, g, b)
         time.sleep(0.1)
