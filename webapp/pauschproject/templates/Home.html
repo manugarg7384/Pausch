@@ -125,31 +125,54 @@
       </style>
     </head>
   <body>
-
-    <div class="title">
-      <a href="#"><h1>Lights On!</h1></a> 
-      <a href="#0" class="cd-popup-trigger"><i class="fa fa-info-circle"></i></a> 
+    
+    <header>
+  <div id="left">
+    <a href="#"><h1>Lights On!</h1></a>
+  </div>
+  <div id="right">
+    <a href="#" class="rules-trigger">
+      <i class="fa fa-book"></i>
+      <h2>rules</h2>
+    </a>
+    <a href="#" class="about-trigger">
+      <i class="fa fa-info-circle"></i>
+      <h2>about</h2>
+    </a>
     </div>
+</header>
 
     <div class="wrap">
       {% include 'buttons.html' %}
     </div>
 
-    <div class="cd-popup" role="alert">
-      <div class="cd-popup-container">
-        <h2>Goal</h2> 
-        <br>
-        Turn all the lights on
+   <div class="rules-popup" role="alert">
+      <div class="rules-popup-container">
+        <h3>Rules</h3>
+        <hr>
+        Turn all the lights on!
         <p></p>
-        <h2>Instructions</h2>
-        <br>
         1. Clicking on a block toggles the block and it's neighbors on or off
         <br>
         2. Continue toggling blocks until all the lights have been turned on
 
-        <a href="#0" class="cd-popup-close img-replace"><!--<i class="fa fa-times"></i>--></a>
+        <a href="#0" class="rules-popup-close img-replace"></a>
       </div>
     </div> 
+
+<div class="about-popup" role="alert">
+      <div class="about-popup-container">
+        <h3>About</h3>
+        <hr>
+        <strong>Lights On!</strong> is an interactive game by Hunter Modisett, Leslie Bloomfield, Youzi Wu, Felipe Vargas, Jeffrey Zhang, Manu Garg, and Kevin Huang. It was designed and built for the Spring 2015 mini-course Interaction & Expression Using the Pausch Bridge Lighting at Carnegie Mellon University. 
+        <p></p>
+        Gameplay is controlled through this web app and impacts the visual output of the bridge LED panels in real-time. 
+        
+       
+        <a href="#0" class="about-popup-close"></a>
+      </div>
+    </div> 
+
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <script src="http://getbootstrap.com/assets/js/vendor/holder.js"></script>
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
