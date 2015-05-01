@@ -84,3 +84,10 @@ function init() {
       }
   });
 }
+
+var cw = $('button').width();
+$('button').css({'height':cw+'px'});
+
+$(window).resize(function() {
+  $('button').height($('button').width());
+});
